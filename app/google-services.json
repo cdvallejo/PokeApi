@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "636564871819",
+    "project_id": "pokemonapp-pmdm",
+    "storage_bucket": "pokemonapp-pmdm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636564871819:android:4aa7572831a98653edd28e",
+        "android_client_info": {
+          "package_name": "project.dampmdmtarea3cdva"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636564871819-djut2rbi93frfc4p6hnu17tu7lodse1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.dampmdmtarea3cdva",
+            "certificate_hash": "bf3cc2c79f31345ccbeffbac8dbe3159abac4024"
+          }
+        },
+        {
+          "client_id": "636564871819-0avecbsbsbop2c99mpcfb5m7oh769v0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaspcxFwpotupMcw-gsOWPfnnMdb_7iMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636564871819-0avecbsbsbop2c99mpcfb5m7oh769v0c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

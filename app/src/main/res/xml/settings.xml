@@ -1,0 +1,34 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Opción para permitir la eliminación de Pokémon capturados -->
+    <SwitchPreferenceCompat
+        android:key="allow_deletion"
+        android:title="Permitir eliminación"
+        android:summary="Habilita la opción de eliminar Pokémon capturados"
+        android:defaultValue="false" />
+
+    <!-- Opción para seleccionar el idioma -->
+    <ListPreference
+        android:key="language"
+        android:title="Idioma"
+        android:summary="Selecciona el idioma de la aplicación"
+        android:defaultValue="es"
+        android:entries="@array/language_entries"
+        android:entryValues="@array/language_values"
+        android:dialogTitle="Selecciona el idioma" />
+
+    <!-- Opción para cerrar sesión -->
+    <Preference
+        android:key="logout"
+        android:title="Cerrar sesión"
+        android:summary="Cierra tu sesión y vuelve a la pantalla principal"
+        android:onClick="onLogoutClick" />
+
+    <!-- Opción Acerca de -->
+    <Preference
+        android:key="about"
+        android:title="Acerca de"
+        android:summary="Información sobre la aplicación"
+        android:onClick="onAboutClick" />
+
+</PreferenceScreen>
