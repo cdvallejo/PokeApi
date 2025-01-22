@@ -1,10 +1,11 @@
 package project.dampmdmtarea3cdva;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceFragmentCompat;
@@ -15,11 +16,12 @@ import androidx.preference.PreferenceManager;
 
 import com.firebase.ui.auth.AuthUI;
 
+import java.util.Locale;
+
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        Log.d("SettingsFragment", "Cargando preferencias...");
         // Cargar las preferencias desde el archivo XML
         setPreferencesFromResource(R.xml.settings, rootKey);
 
@@ -35,7 +37,26 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Configurar la preferencia de idioma
         ListPreference languagePreference = findPreference("language");
         if (languagePreference != null) {
+            // Establecer el idioma por defecto
             languagePreference.setDefaultValue(sharedPreferences.getString("language", "es"));
+
+            // Listener para cambiar el idioma
+            languagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String languageCode = (String) newValue;
+                    // Guardar el nuevo idioma seleccionado
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("language", languageCode);
+                    editor.apply();
+
+                    // Cambiar el idioma de la app
+                    setLocale(languageCode);
+                    // Recargar la actividad para aplicar el cambio de idioma
+                    requireActivity().recreate();
+                    return true;
+                }
+            });
         }
 
         // Configurar la opción de cerrar sesión
@@ -43,7 +64,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (logoutPreference != null) {
             logoutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
-                public boolean onPreferenceClick(@NonNull Preference preference) {
+                public boolean onPreferenceClick(Preference preference) {
                     onLogoutClick();
                     return true;
                 }
@@ -55,38 +76,65 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (aboutPreference != null) {
             aboutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
-                public boolean onPreferenceClick(@NonNull Preference preference) {
+                public boolean onPreferenceClick(Preference preference) {
                     onAboutClick();
+                    return true;
+                }
+            });
+        }
+        // Preferencia de cerrar sesión
+        if (logoutPreference != null) {
+            logoutPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(@NonNull Preference preference) {
+                    onLogoutClick();
                     return true;
                 }
             });
         }
     }
 
-    // Lógica para cerrar sesión (como redirigir a la pantalla de login)
-    private void onLogoutClick() {
+    // Método para cerrar sesión
+    public void onLogoutClick() {
         AuthUI.getInstance()
-                .signOut(requireContext()) // Usa el contexto adecuado
+                .signOut(requireContext())  // Usa el contexto adecuado
                 .addOnCompleteListener(task -> {
-                    goToLogin(); // Llama al método para loguearse
+                    goToLogin();  // Redirige a la pantalla de login
                 });
     }
 
     private void goToLogin() {
-        Intent i = new Intent(requireContext(), LoginActivity.class); // Usa el contexto del fragmento
+        Intent i = new Intent(requireContext(), LoginActivity.class); // Redirige al login
         startActivity(i);
-        requireActivity().finish(); // Finaliza la actividad que contiene el fragmento
+        requireActivity().finish();  // Finaliza la actividad
     }
 
-
-    private void onAboutClick() {
+    // Método para mostrar el diálogo "Acerca de"
+    public void onAboutClick() {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Acerca de")
-                .setMessage("Esta aplicación ha sido desarrollada por Carlos Vallejo.")
-                .setPositiveButton("Cerrar", (dialog, which) -> {
+                .setTitle(getString(R.string.about_title))
+                .setMessage(getString(R.string.about_message))
+                .setPositiveButton(getString(R.string.close_button), (dialog, which) -> {
                     dialog.dismiss(); // Cierra el diálogo
                 })
                 .show();
     }
 
+    public void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        // Actualizar la configuración de la aplicación
+        Configuration config = new Configuration();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLocale(locale);
+        } else {
+            config.locale = locale;
+        }
+
+        // Aplicar la nueva configuración al contexto
+        Context context = requireContext();
+        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+    }
 }
+

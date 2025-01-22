@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No has capturado ningún Pokémon"
+        android:text="@string/no_captured"
         android:visibility="gone"
         android:textSize="16sp"
         android:padding="16dp"

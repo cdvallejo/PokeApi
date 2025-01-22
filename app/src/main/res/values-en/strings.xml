@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name">Pokémon App</string>
+    <string name="lista_de_pok_dex">Pokédex List</string>
+
+    <!-- Captura de pokémon -->
+    <string name="no_captured">You haven\'t caught any Pokémon</string>
+    <string name="pokemon_captured_title">Pokémon captured!</string>
+    <string name="pokemon_captured_message">You have caught %1$s</string>
+    <string name="ok_button">Ok!</string>
+    <string name="pokemon_captured_tab">Pokémon Captured</string>
+    <string name="settings_tab">Settings</string>
+
+    <!-- Ajustes -->
+    <string name="allow_deletion_title">Allow Deletion</string>
+    <string name="allow_deletion_summary">Enable the option to delete captured Pokémon</string>
+    <string name="language_title">Language</string>
+    <string name="language_summary">Select the application\'s language</string>
+    <string name="language_dialog_title">Select Language</string>
+    <string name="logout_title">Log Out</string>
+    <string name="logout_summary">Log out and return to the main screen</string>
+    <string name="about_title">About</string>
+    <string name="about_summary">Information about the application</string>
+
+    <!-- About -->
+    <string name="about_message">This application was developed by Carlos Vallejo.</string>
+    <string name="close_button">Close</string>
+
 
     <!-- Idiomas -->
     <string-array name="language_entries">
@@ -10,4 +35,5 @@
         <item>es</item>
         <item>en</item>
     </string-array>
+    <string name="settings">Settings</string>
 </resources>

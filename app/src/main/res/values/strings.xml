@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">Pokémon App</string>
+    <string name="lista_de_pok_dex">Lista de Pokédex</string>
+
+    <!-- Captura de pokémon -->
+    <string name="no_captured">No has capturado ningún Pokémon</string>
+    <string name="pokemon_captured_title">¡Pokémon capturado!</string>
+    <string name="pokemon_captured_message">Has capturado a %1$s</string>
+    <string name="ok_button">¡Ok!</string>
+    <string name="pokemon_captured_tab">Pokémon Capturados</string>
+    <string name="settings_tab">Ajustes</string>
+
+    <!-- Ajustes -->
+    <string name="allow_deletion_title">Permitir eliminación</string>
+    <string name="allow_deletion_summary">Habilita la opción de eliminar Pokémon capturados</string>
+    <string name="language_title">Idioma</string>
+    <string name="language_summary">Selecciona el idioma de la aplicación</string>
+    <string name="language_dialog_title">Selecciona el idioma</string>
+    <string name="logout_title">Cerrar sesión</string>
+    <string name="logout_summary">Cierra tu sesión y vuelve a la pantalla principal</string>
+    <string name="about_title">Acerca de</string>
+    <string name="about_summary">Información sobre la aplicación</string>
+
+    <!-- About -->
+    <string name="about_message">Esta aplicación ha sido desarrollada por Carlos Vallejo.</string>
+    <string name="close_button">Cerrar</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

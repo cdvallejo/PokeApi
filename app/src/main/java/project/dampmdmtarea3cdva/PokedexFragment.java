@@ -61,13 +61,13 @@ public class PokedexFragment extends Fragment {
     }
 
     private void onPokemonClick(PokemonResult pokemon) {
-            new AlertDialog.Builder(requireContext())
-                    .setTitle("¡Pokémon capturado!")
-                    .setMessage("Has capturado a " + pokemon.getName())
-                    .setPositiveButton("Ok!", (dialog, which) -> {
-                        dialog.dismiss(); // Cierra el diálogo
-                    })
-                    .show();
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.pokemon_captured_title))
+                .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
+                .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
+                    dialog.dismiss(); // Cierra el diálogo
+                })
+                .show();
         // Aquí manejarás la captura del Pokémon
 
     }
