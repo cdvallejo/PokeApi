@@ -104,19 +104,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     }
 
     private void goToLogin() {
-        Intent i = new Intent(requireContext(), LoginActivity.class); // Redirige al login
-        startActivity(i);
-        requireActivity().finish();  // Finaliza la actividad
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.close_login_title))
+                .setMessage(getString(R.string.close_login_message))
+                .setPositiveButton(getString(R.string.yes_button), (dialog, which) -> {
+                    Intent i = new Intent(requireContext(), LoginActivity.class);
+                    startActivity(i);
+                    requireActivity().finish();
+                })
+                .setNegativeButton(getString(R.string.no_button), (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
-    // Método para mostrar el diálogo "Acerca de"
     public void onAboutClick() {
         new AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.about_title))
                 .setMessage(getString(R.string.about_message))
-                .setPositiveButton(getString(R.string.close_button), (dialog, which) -> {
-                    dialog.dismiss(); // Cierra el diálogo
-                })
+                .setPositiveButton(getString(R.string.close_button), (dialog, which) -> dialog.dismiss())
                 .show();
     }
 
@@ -137,4 +141,3 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 }
-

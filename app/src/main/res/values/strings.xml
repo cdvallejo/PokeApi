@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Pokémon App</string>
-    <string name="lista_de_pok_dex">Lista de Pokédex</string>
+    <string name="list_pokedex">Lista de Pokédex</string>
 
     <!-- Captura de pokémon -->
     <string name="no_captured">No has capturado ningún Pokémon</string>
@@ -22,8 +22,16 @@
     <string name="about_summary">Información sobre la aplicación</string>
 
     <!-- About -->
-    <string name="about_message">Esta aplicación ha sido desarrollada por Carlos Vallejo.</string>
+    <string name="about_message">Esta aplicación ha sido desarrollada por Carlos Vallejo. Versión 1.0.0</string>
     <string name="close_button">Cerrar</string>
+    <string name="pokemonName">Nombre del Pokémon</string>
+
+    <string name="pokemon_no_captured_title">Error</string>
+    <string name="pokemon_no_captured_message">No ha sido posible guardar el Pokémon en la database.</string>
+    <string name="close_login_title">Cerrar sesión</string>
+    <string name="close_login_message">¿Estás seguro/a de que quieres cerrar tu sesión de usuario?</string>
+    <string name="yes_button">Sí</string>
+    <string name="no_button">No</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

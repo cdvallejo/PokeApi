@@ -24,8 +24,8 @@ public class PokemonDetailActivity extends AppCompatActivity {
         PokemonResult pokemon = (PokemonResult) getIntent().getSerializableExtra("pokemon");
 
         if (pokemon != null) {
-            binding.pokemonNameDetail.setText(pokemon.getName());
-            Picasso.get().load(pokemon.getSprites().getOther().getOfficialArtwork().getFrontDefault()).into(binding.pokemonImageDetail);
+            binding.pokemonName.setText(pokemon.getName());
+            Picasso.get().load(pokemon.getImageUrl());
         }
     }
 }

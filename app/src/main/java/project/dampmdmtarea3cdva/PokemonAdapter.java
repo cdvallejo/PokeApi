@@ -36,21 +36,12 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
         PokemonResult pokemon = pokemonList.get(position);
         holder.binding.pokemonName.setText(pokemon.getName());
 
-        // Comprobamos si los objetos intermedios son null antes de acceder a ellos
-        if (pokemon.getSprites() != null && pokemon.getSprites().getOther() != null
-                && pokemon.getSprites().getOther().getOfficialArtwork() != null) {
+        // Construir la URL de la imagen manualmente (basado en el ID del Pokémon)
+        int pokemonId = position + 1; // La lista es ordenada por ID
+        String imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + pokemonId + ".png";
 
-            String imageUrl = pokemon.getSprites().getOther().getOfficialArtwork().getFrontDefault();
-            if (imageUrl != null) {
-                Picasso.get().load(imageUrl).into(holder.binding.pokemonImage);
-            } else {
-                // Cargar una imagen predeterminada si la URL de la imagen es null
-                holder.binding.pokemonImage.setImageResource(R.drawable.logo_autenticar);
-            }
-        } else {
-            // Si alguno de los objetos es null, cargar una imagen predeterminada
-            holder.binding.pokemonImage.setImageResource(R.drawable.logo_autenticar);
-        }
+        // Cargar la imagen con Picasso
+        Picasso.get().load(imageUrl).into(holder.binding.pokemonImage);
 
         holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(pokemon));
     }

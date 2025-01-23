@@ -1,11 +1,14 @@
 package project.dampmdmtarea3cdva;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.Locale;
 
 import project.dampmdmtarea3cdva.databinding.ActivityMainBinding;
 
@@ -34,4 +37,5 @@ public class MainActivity extends AppCompatActivity {
         // Configurar el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
     }
+
 }

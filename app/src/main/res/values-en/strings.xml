@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Pokémon App</string>
-    <string name="lista_de_pok_dex">Pokédex List</string>
+    <string name="list_pokedex">Pokédex List</string>
+    <string name="yes_button">Yes</string>
+    <string name="no_button">No</string>
+    <string name="pokemonName">Pokémon name</string>
+
 
     <!-- Captura de pokémon -->
     <string name="no_captured">You haven\'t caught any Pokémon</string>
@@ -22,9 +26,13 @@
     <string name="about_summary">Information about the application</string>
 
     <!-- About -->
-    <string name="about_message">This application was developed by Carlos Vallejo.</string>
+    <string name="about_message">This application was developed by Carlos Vallejo. Versión 1.0.0</string>
     <string name="close_button">Close</string>
 
+    <string name="pokemon_no_captured_title">Error</string>
+    <string name="pokemon_no_captured_message">It was not possible to save the Pokémon to the database.</string>
+    <string name="close_login_title">Logout</string>
+    <string name="close_login_message">Are you sure you want to close your user session?</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">
@@ -35,5 +43,4 @@
         <item>es</item>
         <item>en</item>
     </string-array>
-    <string name="settings">Settings</string>
 </resources>

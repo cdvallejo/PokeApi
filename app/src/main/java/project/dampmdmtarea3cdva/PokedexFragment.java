@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 import project.dampmdmtarea3cdva.Retrofit.PokeApiAdapter;
@@ -65,11 +68,37 @@ public class PokedexFragment extends Fragment {
                 .setTitle(getString(R.string.pokemon_captured_title))
                 .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
                 .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
+                    capturePokemon(pokemon); // Guardar en Firebase
                     dialog.dismiss(); // Cierra el diálogo
                 })
                 .show();
-        // Aquí manejarás la captura del Pokémon
 
+    }
+
+    private void capturePokemon(PokemonResult pokemon) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("captured_pokemon") // Nombre de la colección en Firestore
+                .add(pokemon) // Añade el Pokémon capturado
+                .addOnSuccessListener(documentReference -> {
+                    new AlertDialog.Builder(requireContext())
+                            .setTitle(getString(R.string.pokemon_captured_title))
+                            .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
+                            .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
+                                capturePokemon(pokemon); // Guardar en Firebase
+                                dialog.dismiss(); // Cierra el diálogo
+                            })
+                            .show();
+                })
+                .addOnFailureListener(e -> {
+                    new AlertDialog.Builder(requireContext())
+                            .setTitle(getString(R.string.pokemon_no_captured_title))
+                            .setMessage(getString(R.string.pokemon_no_captured_message))
+                            .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
+                                dialog.dismiss(); // Cierra el diálogo
+                            })
+                            .show();
+                });
     }
 
     @Override

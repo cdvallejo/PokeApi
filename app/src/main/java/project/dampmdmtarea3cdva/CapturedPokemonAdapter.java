@@ -1,48 +1,54 @@
 package project.dampmdmtarea3cdva;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import project.dampmdmtarea3cdva.databinding.PokemonItemBinding;  // Importar ViewBinding adecuado
+public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemonAdapter.PokemonViewHolder> {
 
-public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemonAdapter.ViewHolder> {
+    private List<PokemonResult> pokemonList;
 
-    private List<PokemonResult> capturedPokemonList;  // Lista de Pokémon capturados
+    public CapturedPokemonAdapter(List<PokemonResult> pokemonList) {
+        this.pokemonList = pokemonList;
+    }
 
-    public CapturedPokemonAdapter(List<PokemonResult> capturedPokemonList) {
-        this.capturedPokemonList = capturedPokemonList;
+    @NonNull
+    @Override
+    public PokemonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pokemon_item, parent, false);
+        return new PokemonViewHolder(view);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Usamos ViewBinding para inflar la vista del item
-        PokemonItemBinding binding = PokemonItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new ViewHolder(binding);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        PokemonResult pokemon = capturedPokemonList.get(position);
-        holder.binding.pokemonName.setText(pokemon.getName());
-        Picasso.get().load(pokemon.getImageUrl()).into(holder.binding.pokemonImage);
+    public void onBindViewHolder(@NonNull PokemonViewHolder holder, int position) {
+        PokemonResult pokemon = pokemonList.get(position);
+        holder.pokemonName.setText(pokemon.getName());
+        Picasso.get().load(pokemon.getImageUrl()).into(holder.pokemonImage);
+        // Otros datos que quieras mostrar como peso, altura, etc.
     }
 
     @Override
     public int getItemCount() {
-        return capturedPokemonList.size();
+        return pokemonList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final PokemonItemBinding binding;
+    public static class PokemonViewHolder extends RecyclerView.ViewHolder {
+        TextView pokemonName;
+        ImageView pokemonImage;
 
-        public ViewHolder(PokemonItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
+        public PokemonViewHolder(View itemView) {
+            super(itemView);
+            pokemonName = itemView.findViewById(R.id.pokemonName);
+            pokemonImage = itemView.findViewById(R.id.pokemonImage);
         }
     }
 }

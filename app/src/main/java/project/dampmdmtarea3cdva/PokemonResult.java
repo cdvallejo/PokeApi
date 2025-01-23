@@ -1,17 +1,24 @@
 package project.dampmdmtarea3cdva;
 
-import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class PokemonResult {
     private String name;
+    private int id; // Índice de la Pokédex
+    private double weight; // Peso del Pokémon
+    private double height; // Altura del Pokémon
+    private List<String> types; // Tipos del Pokémon (por ejemplo, "Fuego", "Agua")
 
-    @SerializedName("sprites")  // El campo que contiene las imágenes en la respuesta JSON
-    private Sprites sprites;
+    // Constructor vacío requerido por Firestore
+    public PokemonResult() {}
 
-    // Constructor
-    public PokemonResult(String name, Sprites sprites) {
+    // Constructor completo
+    public PokemonResult(String name, int id, double weight, double height, List<String> types) {
         this.name = name;
-        this.sprites = sprites;
+        this.id = id;
+        this.weight = weight;
+        this.height = height;
+        this.types = types;
     }
 
     // Getters y setters
@@ -23,56 +30,45 @@ public class PokemonResult {
         this.name = name;
     }
 
-    public Sprites getSprites() {
-        return sprites;
+    public int getId() {
+        return id;
     }
 
-    public void setSprites(Sprites sprites) {
-        this.sprites = sprites;
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
+    }
+
+    // Generar la URL de la imagen directamente a partir del ID
     public String getImageUrl() {
-        // Asumimos que la imagen está dentro de sprites -> other -> official_artwork -> front_default
-        return sprites.getOther().getOfficialArtwork().getFrontDefault();
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + id + ".png";
     }
 
-    // Clase interna para manejar las imágenes
-    public static class Sprites {
-        @SerializedName("other")
-        private OtherSprites other;
-
-        public OtherSprites getOther() {
-            return other;
-        }
-
-        public void setOther(OtherSprites other) {
-            this.other = other;
-        }
-
-        public static class OtherSprites {
-            @SerializedName("official-artwork")
-            private OfficialArtwork officialArtwork;
-
-            public OfficialArtwork getOfficialArtwork() {
-                return officialArtwork;
-            }
-
-            public void setOfficialArtwork(OfficialArtwork officialArtwork) {
-                this.officialArtwork = officialArtwork;
-            }
-
-            public static class OfficialArtwork {
-                @SerializedName("front_default")
-                private String frontDefault;
-
-                public String getFrontDefault() {
-                    return frontDefault;
-                }
-
-                public void setFrontDefault(String frontDefault) {
-                    this.frontDefault = frontDefault;
-                }
-            }
-        }
+    // Obtener los tipos como una cadena formateada
+    public String getFormattedTypes() {
+        return String.join(", ", types);
     }
 }

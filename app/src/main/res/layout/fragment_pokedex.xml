@@ -7,14 +7,12 @@
     tools:context=".PokedexFragment">
 
     <!-- Título de la lista -->
-
-    <!-- RecyclerView de la lista -->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="411dp"
         android:layout_height="25dp"
         android:background="@color/pokemon_red"
-        android:text="@string/lista_de_pok_dex"
+        android:text="@string/list_pokedex"
         android:textColor="@color/pokemon_white"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -24,11 +22,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- RecyclerView de la lista -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pokedexRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:padding="8dp"
+        android:layout_marginBottom="60dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
