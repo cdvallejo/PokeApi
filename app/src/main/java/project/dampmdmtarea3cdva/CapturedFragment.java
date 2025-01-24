@@ -61,7 +61,7 @@ public class CapturedFragment extends Fragment {
                     capturedPokemonList.addAll(capturedPokemonListFromFirestore);
 
                     // Notificar al adaptador que los datos han cambiado
-                    ((CapturedPokemonAdapter) binding.recyclerViewCaptured.getAdapter()).notifyDataSetChanged();
+                    binding.recyclerViewCaptured.getAdapter().notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error al cargar Pokémon capturados", Toast.LENGTH_SHORT).show();
@@ -73,7 +73,7 @@ public class CapturedFragment extends Fragment {
         capturedPokemonList.add(pokemon);
         if (getView() != null) {
             // Notificar al adaptador que los datos han cambiado
-            ((CapturedPokemonAdapter) binding.recyclerViewCaptured.getAdapter()).notifyDataSetChanged();
+            binding.recyclerViewCaptured.getAdapter().notifyDataSetChanged();
         }
     }
 }

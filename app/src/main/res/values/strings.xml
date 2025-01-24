@@ -32,6 +32,7 @@
     <string name="close_login_message">¿Estás seguro/a de que quieres cerrar tu sesión de usuario?</string>
     <string name="yes_button">Sí</string>
     <string name="no_button">No</string>
+    <string name="list_captured">Pokémon Capturados</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

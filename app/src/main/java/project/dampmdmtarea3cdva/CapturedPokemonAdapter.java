@@ -1,20 +1,5 @@
 package project.dampmdmtarea3cdva;
 
-import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
-package project.dampmdmtarea3cdva;
-
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -25,8 +10,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import project.dampmdmtarea3cdva.databinding.ItemCapturedPokemonBinding;
-
+import project.dampmdmtarea3cdva.databinding.PokemonItemCapturedBinding;
 public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemonAdapter.CapturedPokemonViewHolder> {
 
     private List<PokemonResult> capturedPokemonList;
@@ -38,8 +22,7 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
     @NonNull
     @Override
     public CapturedPokemonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflar el layout item_captured_pokemon.xml que contiene el CardView
-        ItemCapturedPokemonBinding binding = ItemCapturedPokemonBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        PokemonItemCapturedBinding binding = PokemonItemCapturedBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new CapturedPokemonViewHolder(binding);
     }
 
@@ -48,11 +31,8 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
         PokemonResult pokemon = capturedPokemonList.get(position);
 
         holder.binding.pokemonName.setText(pokemon.getName());
-        holder.binding.pokemonTypes.setText(pokemon.getFormattedTypes());
-        holder.binding.pokemonWeight.setText("Peso: " + pokemon.getWeight() + " kg");
-        holder.binding.pokemonHeight.setText("Altura: " + pokemon.getHeight() + " m");
 
-        // Cargar imagen con Picasso
+        // Cargar imagen con Picasso (o cualquier otra librería de imágenes)
         Picasso.get().load(pokemon.getImageUrl()).into(holder.binding.pokemonImage);
     }
 
@@ -62,9 +42,9 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
     }
 
     public static class CapturedPokemonViewHolder extends RecyclerView.ViewHolder {
-        ItemCapturedPokemonBinding binding;
+        PokemonItemCapturedBinding binding;
 
-        public CapturedPokemonViewHolder(ItemCapturedPokemonBinding binding) {
+        public CapturedPokemonViewHolder(PokemonItemCapturedBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

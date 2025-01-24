@@ -1,6 +1,7 @@
 package project.dampmdmtarea3cdva;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -67,37 +71,51 @@ public class PokedexFragment extends Fragment {
         new AlertDialog.Builder(requireContext())
                 .setTitle(getString(R.string.pokemon_captured_title))
                 .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
-                .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
-                    capturePokemon(pokemon); // Guardar en Firebase
-                    dialog.dismiss(); // Cierra el diálogo
+                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        capturePokemon(pokemon); // Guardar en Firebase
+                        dialog.dismiss(); // Cierra el diálogo
+                    }
                 })
                 .show();
-
     }
 
     private void capturePokemon(PokemonResult pokemon) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("captured_pokemon") // Nombre de la colección en Firestore
+        db.collection("captured_pokemon_db") // Nombre de la colección en Firestore
                 .add(pokemon) // Añade el Pokémon capturado
-                .addOnSuccessListener(documentReference -> {
-                    new AlertDialog.Builder(requireContext())
-                            .setTitle(getString(R.string.pokemon_captured_title))
-                            .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
-                            .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
-                                capturePokemon(pokemon); // Guardar en Firebase
-                                dialog.dismiss(); // Cierra el diálogo
-                            })
-                            .show();
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        new AlertDialog.Builder(requireContext())
+                                .setTitle(getString(R.string.pokemon_captured_title))
+                                .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
+                                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        capturePokemon(pokemon); // Guardar en Firebase
+                                        dialog.dismiss(); // Cierra el diálogo
+                                    }
+                                })
+                                .show();
+                    }
                 })
-                .addOnFailureListener(e -> {
-                    new AlertDialog.Builder(requireContext())
-                            .setTitle(getString(R.string.pokemon_no_captured_title))
-                            .setMessage(getString(R.string.pokemon_no_captured_message))
-                            .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> {
-                                dialog.dismiss(); // Cierra el diálogo
-                            })
-                            .show();
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        new AlertDialog.Builder(requireContext())
+                                .setTitle(getString(R.string.pokemon_no_captured_title))
+                                .setMessage(getString(R.string.pokemon_no_captured_message))
+                                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss(); // Cierra el diálogo
+                                    }
+                                })
+                                .show();
+                    }
                 });
     }
 

@@ -32,7 +32,7 @@ android {
     }
 
     /* Habilitamos biewBinding y dataBinding (para evitar el uso de findViewById)
-    - biewBindiwng: crea clases que permite acceder fácilmente a los componentes de la interfaz de usuario en los XML
+    - viewBindiwng: crea clases que permite acceder fácilmente a los componentes de la interfaz de usuario en los XML
     - dataBinding: permite enlazar directamente las propiedades de tu modelo de datos (por ejemplo un ViewModel) */
     buildFeatures {
         viewBinding = true
@@ -49,6 +49,10 @@ dependencies {
     implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-auth:21.0.1")
+    implementation ("com.google.firebase:firebase-firestore:24.0.0")
+    implementation ("com.google.android.gms:play-services-auth:20.0.0")
+    implementation ("com.google.android.gms:play-services-base:17.6.0")
 
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation(libs.appcompat)

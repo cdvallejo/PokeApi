@@ -67,8 +67,4 @@ public class PokemonResult {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + id + ".png";
     }
 
-    // Obtener los tipos como una cadena formateada
-    public String getFormattedTypes() {
-        return String.join(", ", types);
-    }
 }

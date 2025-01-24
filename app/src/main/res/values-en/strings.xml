@@ -33,6 +33,7 @@
     <string name="pokemon_no_captured_message">It was not possible to save the Pokémon to the database.</string>
     <string name="close_login_title">Logout</string>
     <string name="close_login_message">Are you sure you want to close your user session?</string>
+    <string name="list_captured">Pokémon Captured</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

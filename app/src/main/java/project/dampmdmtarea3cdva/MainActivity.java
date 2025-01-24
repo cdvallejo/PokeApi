@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-
-import java.util.Locale;
+import androidx.preference.PreferenceManager;
 
 import project.dampmdmtarea3cdva.databinding.ActivityMainBinding;
 
@@ -19,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Cargar idioma guardado
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         super.onCreate(savedInstanceState);
 
         // Inicializamos el ViewBinding

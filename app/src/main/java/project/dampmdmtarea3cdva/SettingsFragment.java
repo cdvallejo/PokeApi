@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -43,7 +42,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             // Listener para cambiar el idioma
             languagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
                     String languageCode = (String) newValue;
                     // Guardar el nuevo idioma seleccionado
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -130,11 +129,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         // Actualizar la configuración de la aplicación
         Configuration config = new Configuration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            config.setLocale(locale);
-        } else {
-            config.locale = locale;
-        }
+        config.setLocale(locale);
 
         // Aplicar la nueva configuración al contexto
         Context context = requireContext();

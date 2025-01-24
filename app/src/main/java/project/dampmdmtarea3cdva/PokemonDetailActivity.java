@@ -6,18 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.squareup.picasso.Picasso;
 
-import project.dampmdmtarea3cdva.databinding.ActivityPokemonDetailBinding;
+import project.dampmdmtarea3cdva.databinding.PokemonItemCapturedBinding;
 
 public class PokemonDetailActivity extends AppCompatActivity {
 
-    private ActivityPokemonDetailBinding binding;
+    private PokemonItemCapturedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Inicializamos el ViewBinding
-        binding = ActivityPokemonDetailBinding.inflate(getLayoutInflater());
+        binding = PokemonItemCapturedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Obtener el Pokémon de la Intent
