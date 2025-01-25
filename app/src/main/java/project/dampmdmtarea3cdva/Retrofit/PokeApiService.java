@@ -7,8 +7,6 @@ import retrofit2.http.Query;
 
 public interface PokeApiService {
 
-    // Método para obtener detalles del Pokémon, incluyendo su imagen
-
     @GET("pokemon")
     Call<PokemonListResponse> getPokemonList(
             @Query("offset") int offset,

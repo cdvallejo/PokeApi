@@ -4,21 +4,21 @@ import java.util.List;
 
 public class PokemonResult {
     private String name;
-    private int id; // Índice de la Pokédex
-    private double weight; // Peso del Pokémon
-    private double height; // Altura del Pokémon
-    private List<String> types; // Tipos del Pokémon (por ejemplo, "Fuego", "Agua")
+    private int id;
+    private double weight;
+    private double height;
+    private String type;
 
-    // Constructor vacío requerido por Firestore
-    public PokemonResult() {}
-
+    // Constructor vacío (Firebase lo necesita para deserializar)
+    public PokemonResult() {
+    }
     // Constructor completo
-    public PokemonResult(String name, int id, double weight, double height, List<String> types) {
+    public PokemonResult(String name, int id, int weight, int height, String type) {
         this.name = name;
         this.id = id;
         this.weight = weight;
         this.height = height;
-        this.types = types;
+        this.type = type;
     }
 
     // Getters y setters
@@ -42,7 +42,7 @@ public class PokemonResult {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -50,21 +50,21 @@ public class PokemonResult {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public List<String> getTypes() {
-        return types;
+    public String getType() {
+        return type;
     }
 
-    public void setTypes(List<String> types) {
-        this.types = types;
+    public void setType(String type) {
+        this.type = type;
     }
 
     // Generar la URL de la imagen directamente a partir del ID
     public String getImageUrl() {
-        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + id + ".png";
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + getId() + ".png";
     }
 
 }

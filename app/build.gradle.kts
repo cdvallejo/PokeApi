@@ -47,12 +47,9 @@ dependencies {
 
     //Firebase
     implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation ("com.google.firebase:firebase-auth:21.0.1")
-    implementation ("com.google.firebase:firebase-firestore:24.0.0")
-    implementation ("com.google.android.gms:play-services-auth:20.0.0")
-    implementation ("com.google.android.gms:play-services-base:17.6.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
 
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation(libs.appcompat)

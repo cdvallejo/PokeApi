@@ -3,6 +3,7 @@ package project.dampmdmtarea3cdva;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import project.dampmdmtarea3cdva.Retrofit.PokeApiAdapter;
 import project.dampmdmtarea3cdva.Retrofit.PokeApiService;
 import project.dampmdmtarea3cdva.databinding.FragmentPokedexBinding;
@@ -30,7 +32,7 @@ import retrofit2.Response;
 public class PokedexFragment extends Fragment {
 
     private FragmentPokedexBinding binding; // Usamos ViewBinding
-    private PokemonAdapter adapter;
+    private PokedexAdapter adapter;
     private List<PokemonResult> pokemonResultList = new ArrayList<>();
 
     @Override
@@ -40,7 +42,7 @@ public class PokedexFragment extends Fragment {
 
         // Configuramos RecyclerView con ViewBinding
         binding.pokedexRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PokemonAdapter(getContext(), pokemonResultList, this::onPokemonClick);
+        adapter = new PokedexAdapter(getContext(), pokemonResultList, this::onPokemonClick);
         binding.pokedexRecyclerView.setAdapter(adapter);
 
         fetchPokemonList();
@@ -68,55 +70,48 @@ public class PokedexFragment extends Fragment {
     }
 
     private void onPokemonClick(PokemonResult pokemon) {
-        new AlertDialog.Builder(requireContext())
-                .setTitle(getString(R.string.pokemon_captured_title))
-                .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
-                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        capturePokemon(pokemon); // Guardar en Firebase
-                        dialog.dismiss(); // Cierra el diálogo
-                    }
-                })
-                .show();
+        // Si clickea en un Pokémon se captura
+        capturePokemon(pokemon); // Guardar en Firebase
     }
 
     private void capturePokemon(PokemonResult pokemon) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("captured_pokemon_db") // Nombre de la colección en Firestore
-                .add(pokemon) // Añade el Pokémon capturado
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        new AlertDialog.Builder(requireContext())
-                                .setTitle(getString(R.string.pokemon_captured_title))
-                                .setMessage(getString(R.string.pokemon_captured_message, pokemon.getName()))
-                                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        capturePokemon(pokemon); // Guardar en Firebase
-                                        dialog.dismiss(); // Cierra el diálogo
-                                    }
-                                })
-                                .show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        new AlertDialog.Builder(requireContext())
-                                .setTitle(getString(R.string.pokemon_no_captured_title))
-                                .setMessage(getString(R.string.pokemon_no_captured_message))
-                                .setPositiveButton(getString(R.string.ok_button), new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss(); // Cierra el diálogo
-                                    }
-                                })
-                                .show();
+        // Comprobar si ya está capturado
+        checkIfCaptured(db, pokemon);
+    }
+
+    private void checkIfCaptured(FirebaseFirestore db, PokemonResult pokemon) {
+        db.collection("captured_pokemon_db")
+                .whereEqualTo("name", pokemon.getName())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        showMessage(R.string.pokemon_already_captured_title,
+                                R.string.pokemon_already_captured_message, pokemon.getName());
+                    } else {
+                        captureAndSavePokemon(db, pokemon);
                     }
                 });
+    }
+
+    private void captureAndSavePokemon(FirebaseFirestore db, PokemonResult pokemon) {
+        db.collection("captured_pokemon_db")
+                .add(pokemon)
+                .addOnSuccessListener(documentReference ->
+                        showMessage(R.string.pokemon_captured_title,
+                                R.string.pokemon_captured_message, pokemon.getName()))
+                .addOnFailureListener(e ->
+                        showMessage(R.string.pokemon_no_captured_title,
+                                R.string.pokemon_no_captured_message, null));
+    }
+
+    private void showMessage(int titleRes, int messageRes, String pokemonName) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(getString(titleRes))
+                .setMessage(pokemonName != null ? getString(messageRes, pokemonName) : getString(messageRes))
+                .setPositiveButton(getString(R.string.ok_button), (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     @Override

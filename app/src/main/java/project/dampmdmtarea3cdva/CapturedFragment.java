@@ -4,10 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -19,23 +18,20 @@ import project.dampmdmtarea3cdva.databinding.FragmentCapturedBinding;
 public class CapturedFragment extends Fragment {
 
     private FragmentCapturedBinding binding;
-    private List<PokemonResult> capturedPokemonList = new ArrayList<>();  // Lista de Pokémon capturados
+    private List<PokemonResult> capturedPokemonList = new ArrayList<>(); // Lista de Pokémon capturados
+    private CapturedPokemonAdapter adapter; // Adaptador para el RecyclerView
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflar el layout con ViewBinding
         binding = FragmentCapturedBinding.inflate(inflater, container, false);
 
-        // Configurar el RecyclerView
-        RecyclerView recyclerView = binding.recyclerViewCaptured;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Configurar RecyclerView
+        adapter = new CapturedPokemonAdapter(capturedPokemonList);
+        binding.recyclerViewCaptured.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerViewCaptured.setAdapter(adapter);
 
-        // Crear el adaptador y asignarlo al RecyclerView
-        CapturedPokemonAdapter adapter = new CapturedPokemonAdapter(capturedPokemonList);
-        recyclerView.setAdapter(adapter);
-
-        // Cargar Pokémon capturados desde Firestore
+        // Cargar los Pokémon capturados desde Firebase
         loadCapturedPokemon();
 
         return binding.getRoot();
@@ -50,30 +46,18 @@ public class CapturedFragment extends Fragment {
     // Método para cargar Pokémon capturados desde Firestore
     private void loadCapturedPokemon() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("captured_pokemon")
+        db.collection("captured_pokemon_db") // Asegúrate de que el nombre coincida con tu colección en Firestore
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     // Convertir los documentos de Firestore a objetos PokemonResult
-                    List<PokemonResult> capturedPokemonListFromFirestore = queryDocumentSnapshots.toObjects(PokemonResult.class);
-
-                    // Actualizar la lista de Pokémon capturados
-                    capturedPokemonList.clear();  // Limpiar la lista antes de agregar los nuevos
-                    capturedPokemonList.addAll(capturedPokemonListFromFirestore);
+                    capturedPokemonList.clear();
+                    capturedPokemonList.addAll(queryDocumentSnapshots.toObjects(PokemonResult.class));
 
                     // Notificar al adaptador que los datos han cambiado
-                    binding.recyclerViewCaptured.getAdapter().notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Error al cargar Pokémon capturados", Toast.LENGTH_SHORT).show();
                 });
-    }
-
-    // Método para agregar un Pokémon a la lista de capturados
-    public void capturePokemon(PokemonResult pokemon) {
-        capturedPokemonList.add(pokemon);
-        if (getView() != null) {
-            // Notificar al adaptador que los datos han cambiado
-            binding.recyclerViewCaptured.getAdapter().notifyDataSetChanged();
-        }
     }
 }

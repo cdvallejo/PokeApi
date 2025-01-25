@@ -12,6 +12,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
     private PokemonItemCapturedBinding binding;
 
+    // En esta clase guardamos lo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +26,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
         if (pokemon != null) {
             binding.pokemonName.setText(pokemon.getName());
+            binding.pokemonType.setText(pokemon.getType());
             Picasso.get().load(pokemon.getImageUrl());
         }
     }

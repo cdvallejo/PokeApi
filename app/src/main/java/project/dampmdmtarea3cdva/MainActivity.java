@@ -1,13 +1,12 @@
 package project.dampmdmtarea3cdva;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
-import androidx.preference.PreferenceManager;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import project.dampmdmtarea3cdva.databinding.ActivityMainBinding;
 
@@ -18,8 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Cargar idioma guardado
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
 

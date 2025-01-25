@@ -33,6 +33,8 @@
     <string name="yes_button">Sí</string>
     <string name="no_button">No</string>
     <string name="list_captured">Pokémon Capturados</string>
+    <string name="pokemon_already_captured_title">Pokémon ya capturado</string>
+    <string name="pokemon_already_captured_message">Este Pokémon ya está en tu lista de capturados.</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

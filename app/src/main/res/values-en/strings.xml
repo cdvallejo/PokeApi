@@ -34,7 +34,8 @@
     <string name="close_login_title">Logout</string>
     <string name="close_login_message">Are you sure you want to close your user session?</string>
     <string name="list_captured">Pokémon Captured</string>
-
+    <string name="pokemon_already_captured_title">Pokémon Already Captured</string>
+    <string name="pokemon_already_captured_message">This Pokémon is already in your captured list!</string>
     <!-- Idiomas -->
     <string-array name="language_entries">
         <item>Spanish</item>
