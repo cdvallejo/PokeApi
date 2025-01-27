@@ -1,24 +1,16 @@
 package project.dampmdmtarea3cdva;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class PokemonResult {
+public class PokemonResult implements Serializable {
     private String name;
     private int id;
     private double weight;
     private double height;
     private String type;
 
-    // Constructor vacío (Firebase lo necesita para deserializar)
+    // Constructor vacío (Firebase lo necesita)
     public PokemonResult() {
-    }
-    // Constructor completo
-    public PokemonResult(String name, int id, int weight, int height, String type) {
-        this.name = name;
-        this.id = id;
-        this.weight = weight;
-        this.height = height;
-        this.type = type;
     }
 
     // Getters y setters

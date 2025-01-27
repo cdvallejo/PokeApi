@@ -12,9 +12,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
-
 import com.firebase.ui.auth.AuthUI;
-
 import java.util.Locale;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
@@ -22,7 +20,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         // Cargar las preferencias desde el archivo XML
-        setPreferencesFromResource(R.xml.settings, rootKey);
+        setPreferencesFromResource(R.xml.preferences, rootKey);
 
         // Obtener las preferencias
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
@@ -101,6 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     goToLogin();  // Redirige a la pantalla de login
                 });
     }
+
     // Diálogo que da la opción de cerrar sesión
     private void goToLogin() {
         new AlertDialog.Builder(requireContext())
@@ -114,6 +113,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 .setNegativeButton(getString(R.string.no_button), (dialog, which) -> dialog.dismiss())
                 .show();
     }
+
     // Diálogo que muestra la info de la app
     public void onAboutClick() {
         new AlertDialog.Builder(requireContext())

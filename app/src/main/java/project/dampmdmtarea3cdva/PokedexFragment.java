@@ -1,9 +1,8 @@
 package project.dampmdmtarea3cdva;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import project.dampmdmtarea3cdva.Retrofit.PokeApiAdapter;
 import project.dampmdmtarea3cdva.Retrofit.PokeApiService;
 import project.dampmdmtarea3cdva.databinding.FragmentPokedexBinding;
@@ -46,6 +40,10 @@ public class PokedexFragment extends Fragment {
         binding.pokedexRecyclerView.setAdapter(adapter);
 
         fetchPokemonList();
+
+        // Obtener la preferencia de eliminación
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean allowDeletion = sharedPreferences.getBoolean("allow_deletion", false);
 
         return binding.getRoot(); // Usamos el root de ViewBinding para devolver la vista
     }

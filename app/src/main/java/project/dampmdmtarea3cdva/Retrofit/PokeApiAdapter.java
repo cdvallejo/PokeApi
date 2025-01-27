@@ -9,9 +9,6 @@ public class PokeApiAdapter {
 
     private static PokeApiService API_SERVICE;
 
-    /**
-     * Base URL for the Pokémon API.
-     */
     private static final String BASE_URL = "https://pokeapi.co/api/v2/";
 
     public static PokeApiService getApiService() {

@@ -6,8 +6,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import project.dampmdmtarea3cdva.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

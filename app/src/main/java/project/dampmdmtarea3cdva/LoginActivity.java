@@ -36,12 +36,12 @@ public class LoginActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
-                Intent signInIntent = AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .setLogo(R.drawable.logo_autenticar)      // Set logo drawable
-                        .setTheme(R.style.Theme_PokemonApp)      // Set theme
-                        .build();
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setLogo(R.drawable.logo_autenticar)      // Set logo drawable
+                .setTheme(R.style.Theme_PokemonApp)      // Set theme
+                .build();
         signInLauncher.launch(signInIntent);
 
     }
@@ -75,8 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             goToMainActivity();
-        }
-        else {
+        } else {
             startSignIn();
         }
     }

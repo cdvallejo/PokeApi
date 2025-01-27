@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "project.dampmdmtarea3cdva"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "project.dampmdmtarea3cdva"
@@ -21,8 +21,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -41,17 +40,17 @@ android {
 
 dependencies {
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.6.4")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.6.4")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 
     //Firebase
-    implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
 
-    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation("com.squareup.picasso:picasso:2.71828")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

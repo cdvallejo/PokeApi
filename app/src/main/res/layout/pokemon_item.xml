@@ -10,14 +10,14 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="8dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/pokemonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="1"
         android:gravity="center_vertical"
         android:text="@string/pokemonName"
-        android:alpha="1"
         android:textSize="18sp" />
 </LinearLayout>

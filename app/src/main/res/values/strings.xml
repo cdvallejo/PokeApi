@@ -35,6 +35,10 @@
     <string name="list_captured">Pokémon Capturados</string>
     <string name="pokemon_already_captured_title">Pokémon ya capturado</string>
     <string name="pokemon_already_captured_message">Este Pokémon ya está en tu lista de capturados.</string>
+    <string name="pokemonType">Pokémon type</string>
+    <string name="pokemonWeight">Pokémon weight</string>
+    <string name="pokemonHeight">Altura del Pokémon</string>
+    <string name="Volver">Volver</string>
 
     <!-- Idiomas -->
     <string-array name="language_entries">

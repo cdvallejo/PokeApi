@@ -36,6 +36,10 @@
     <string name="list_captured">Pokémon Captured</string>
     <string name="pokemon_already_captured_title">Pokémon Already Captured</string>
     <string name="pokemon_already_captured_message">This Pokémon is already in your captured list!</string>
+    <string name="pokemonType">Tipo del Pokémon</string>
+    <string name="pokemonWeight">Peso del Pokémon\n</string>
+    <string name="pokemonHeight">Pokémon height</string>
+    <string name="Volver">Back</string>
     <!-- Idiomas -->
     <string-array name="language_entries">
         <item>Spanish</item>

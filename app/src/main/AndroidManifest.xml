@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
+        <!-- Actividad para ver los detalles del Pokémon -->
+        <activity android:name=".PokemonDetailActivity" />
 
     </application>
 

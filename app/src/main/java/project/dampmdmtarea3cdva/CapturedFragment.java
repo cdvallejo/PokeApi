@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class CapturedFragment extends Fragment {
         binding = FragmentCapturedBinding.inflate(inflater, container, false);
 
         // Configurar RecyclerView
-        adapter = new CapturedPokemonAdapter(capturedPokemonList);
+        adapter = new CapturedPokemonAdapter(capturedPokemonList, getContext());
         binding.recyclerViewCaptured.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerViewCaptured.setAdapter(adapter);
 

@@ -1,20 +1,25 @@
 package project.dampmdmtarea3cdva;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
-
+import java.io.Serializable;
 import java.util.List;
+
 import project.dampmdmtarea3cdva.databinding.PokemonItemCapturedBinding;
+
 public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemonAdapter.ViewHolder> {
 
     private final List<PokemonResult> capturedPokemonList;
+    private final Context context;
 
-    public CapturedPokemonAdapter(List<PokemonResult> capturedPokemonList) {
+    public CapturedPokemonAdapter(List<PokemonResult> capturedPokemonList, Context context) {
         this.capturedPokemonList = capturedPokemonList;
+        this.context = context; // Inicializa el contexto
     }
 
     @NonNull
@@ -40,6 +45,9 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
         } else {
             holder.binding.pokemonImage.setImageResource(R.drawable.logo_autenticar);
         }
+
+        // Maneja el evento de clic en el item
+        holder.itemView.setOnClickListener(view -> itemClicked(pokemon));
     }
 
     @Override
@@ -54,5 +62,12 @@ public class CapturedPokemonAdapter extends RecyclerView.Adapter<CapturedPokemon
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    private void itemClicked(PokemonResult pokemon) {
+        // Crear un Intent para abrir PokemonDetailActivity
+        Intent intent = new Intent(context, PokemonDetailActivity.class);
+        intent.putExtra("pokemon", (Serializable) pokemon); // Pasar el objeto Pokémon
+        context.startActivity(intent);
     }
 }
