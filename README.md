@@ -29,6 +29,11 @@ Esta app ha sido desarrollada como tarea para el módulo de Programación Multim
 Para descargar el repositorio del proyecto e instalarlo:
  * <b>Opción 1</b>: Pulsar sobre el botón verde CODE y obtener la url Https del proyecto. Desde Android Studio, instalar desde "New Project Version Control".
  * <b>Opción 2</b>: También se puede descargar el zip del proyecto, exportar y abrir localmente.
+ * Para poder ejecutar la app hay que tener en cuanta que ha sido compilada con el siguiente Sdk:
+   * compileSdk = 34
+   * minSdk = 31
+   * targetSdk = 34
+   * (App probada con Pixel 8 API 35 y Pixel 7a API 34))
 
 ## Conclusiones del desarrollador:
 Como estudiante de programación, aprender a elaborar una aplicación Android como esta es una oportunidad idónea. La tarea es tan atractiva como exigente para alguien que tiene que adquirir los conocimientos necesarios y aplicar lo ya aprendido.
