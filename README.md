@@ -33,7 +33,7 @@ Para descargar el repositorio del proyecto e instalarlo:
    * compileSdk = 34
    * minSdk = 31
    * targetSdk = 34
-   * (App probada con Pixel 8 API 35 y Pixel 7a API 34))
+   (App probada con Pixel 8 API 35, Pixel 7a API 34 y Pixel 8 Pro API 31)
 
 ## Conclusiones del desarrollador:
 Como estudiante de programación, aprender a elaborar una aplicación Android como esta es una oportunidad idónea. La tarea es tan atractiva como exigente para alguien que tiene que adquirir los conocimientos necesarios y aplicar lo ya aprendido.
