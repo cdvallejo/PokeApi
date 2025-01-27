@@ -44,7 +44,7 @@ Intentar levantar esta aplicación me ha supuesto muchos quebraderos de cabeza y
 * A modificar un layout tras un evento (la transparencia del Pokémon tras ser capturado)
 
 ### Espinas clavadas:
-* No entiendo por qué la API sólo me ha devuelto correctos los datos de Nombre de Pokémon y la imagen. Mediante logs que puse justo antes de enviar los datos a Firebase, me di cuenta de que el peso, la altura y el tipo (sé que pueden ser varios tipos, pero por simplificar traté de coger sólo uno) me devolvía valores nulos o ceros.
+* No entiendo por qué la API sólo me ha devuelto correctos los datos de Nombre de Pokémon y la imagen. Mediante logs que puse justo antes de enviar los datos a Firebase, me di cuenta de que el peso, la altura y el tipo (sé que pueden ser varios tipos, pero por simplificar traté de coger sólo uno) me devolvían valores nulos o ceros.
 * Como he dicho previamente, el guardado de idiomas: sobretodo sabiendo que, en teoría, es uno de los desafíos más sencillos de la tarea.
 * El botón de eliminación de Pokémon, que no he llegado a implementar.
 
