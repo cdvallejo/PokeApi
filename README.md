@@ -23,7 +23,7 @@ Esta app ha sido desarrollada como tarea para el módulo de Programación Multim
      * Fragment
      * Navigation Component
      * View Bindding
-     * Cooridnator Layout
+     * Coordinator Layout
   
 ## Instrucciones de uso:
 Para descargar el repositorio del proyecto e instalarlo:
