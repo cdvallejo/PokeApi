@@ -17,7 +17,7 @@ Esta app ha sido desarrollada como tarea para el módulo de Programación Multim
   * Framework: Android SDK
   * Lenguaje: Java
   * Firebase Authentication para la autenticación y Firebase Database para la base de datos de Pokémon capturados
-  * Retrofit para la recogida de datos de la petición API
+  * Retrofit para la recogida de datos mediante petición API
   * Componentes:
      * RecyclerView 
      * Fragment
